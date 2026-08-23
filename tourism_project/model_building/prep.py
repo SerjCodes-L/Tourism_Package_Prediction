@@ -9,10 +9,10 @@ df.drop(columns=["CustomerID"], inplace=True)
 # raw H/L/M values. Encoding it here (e.g. LabelEncoder) would make training
 # and serving use different representations, silently breaking predictions.
 
-X = df.drop(columns=["Failure"])
-y = df["Failure"]
+X = df.drop(columns=["ProdTaken"])
+y = df["ProdTaken"]
 
-# stratify=y keeps the (imbalanced) failure ratio consistent across splits
+# stratify=y keeps the (imbalanced) ProdTaken ratio consistent across splits
 Xtrain, Xtest, ytrain, ytest = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
@@ -23,4 +23,8 @@ ytrain.to_csv("ytrain.csv", index=False)
 ytest.to_csv("ytest.csv", index=False)
 
 print("Data prepared: train/test splits written.")
-print("Type values kept as:", sorted(X["Type"].unique()))
+# Assuming 'Type' column should be 'TypeofContact' based on expected_columns
+if 'TypeofContact' in X.columns:
+    print("TypeofContact values kept as:", sorted(X["TypeofContact"].unique()))
+else:
+    print("TypeofContact column not found in X. Skipping unique values print.")
