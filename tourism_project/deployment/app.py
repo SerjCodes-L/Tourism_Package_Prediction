@@ -13,7 +13,7 @@ This application predicts the likelihood of a customer purchasing a tourism pack
 """)
 
 
-Age                             = st.number_input("Customer Age", 250.0, 400.0, 298.0, 0.1)
+Age                             = st.number_input("Customer Age", 0, 120)
 Gender                          = st.selectbox("Customer Sex", ["Male", "Female"])
 MaritalStatus                   = st.selectbox("Customer Marital Status",["Simgle", "Family"])
 Occupation                      = st.selectbox("Customer Occupation", ["Free Lancer","Large Business","Occupation", "Salaried", "Small Business"])
@@ -25,7 +25,7 @@ CityTier                        = st.selectbox("Customer City Tier", ["1","2","3
 NumberOfTrips                   = st.number_input("Number Of Trips", 0.0, 100.0, 0)
 prodTaken                       = st.selectbox("Product Purchased in past?", ["0","1"])
 NumberOfPersonVisiting          = st.number_input("Number Of Person Visiting", 0, 300, 10)
-NumberOfChildrenVisiting        = st.number_input("Number Of Children Visiting", 0.0, 100.0, 40.0, 0.1)
+NumberOfChildrenVisiting        = st.number_input("Number Of Children Visiting", 0, 15 )
 TypeofContact                   = st.selectbox("Type of Contact", ["Company Invited", "Self Enquiry"])
 PreferredPropertyStar           = st.selectbox("Preferred Property Star",["2","3","4","5"])
 ProductPitched                  = st.number_input("Product Pitched", 0, 300, 10)
@@ -54,9 +54,6 @@ input_data = pd.DataFrame([{
 "PitchSatisfactionScore": PitchSatisfactionScore,
 "NumberOfFollowups" : NumberOfFollowups,
  }])
-
-
-
 
 if st.button("Predict Tourism Package Purchase"):
     prediction = model.predict(input_data)[0]
