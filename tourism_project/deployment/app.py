@@ -7,7 +7,7 @@ import joblib
 model_path = os.path.join(os.path.dirname(__file__), "Tourism_Package_Prediction_v1.joblib")
 model = joblib.load(model_path)
 
-st.title("Tourism Package Prediction App")
+st.title("Tourism Package Prediction App - Serjith Paramba")
 st.write("""
 This application predicts the likelihood of a customer purchasing a tourism package based on the provided information.
 """)
